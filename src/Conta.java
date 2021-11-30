@@ -15,8 +15,13 @@ public class Conta {
     }
   
     public void deposita(double valor) {
-      this.saldo = this.saldo + valor;
+      if (valor>0){
+        this.saldo = this.saldo + valor;
       System.out.println("Valor depositado, agora sua conta tem: " + saldo);
+      } else{
+        System.out.println("Para fazer deposito, é necessário que o valor seja a cima de R$0");
+      }
+      
     }
   
     public void saca(double valor) {
@@ -47,5 +52,14 @@ public class Conta {
     public static int getQuantidadeDeContas() {
       return quantidadeDeContas;
     }
-  
+    public double transfer(double valor){
+      if (valor<=this.saldo){
+       this.saldo-=valor;
+       System.out.println("Transferência realizada!");
+       return valor;
+     }else{
+       System.out.println("Seu saldo é insuficiente para completar a transferencia");
+        return 0.0;
+     }
+    }
   }

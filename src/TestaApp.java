@@ -4,9 +4,10 @@ public class TestaApp {
   
       System.out.println("Abrindo o banco Maut, contas existentes: " + Conta.getQuantidadeDeContas());
   
-      Cliente cliente1 = new Cliente();
-      cliente1.nome = "Alessandro Viana";
-      cliente1.CPF = "84738473847";
+      Cliente cliente1 = new Cliente("Alessandro Viana", "Santa Quiteria","84738473847");
+      System.out.println("Cliente1 "+cliente1.getendereco());
+      cliente1.setendereco("Santa Quiteria");
+      System.out.println("\n");
   
       Conta conta1 = new Conta(123, 45, cliente1);
        System.out.println(conta1.getAgencia() + " - " + conta1.getNumero() + " - " +
@@ -27,9 +28,8 @@ public class TestaApp {
   
        System.out.println(conta1.getAgencia());
   
-      Cliente cliente2 = new Cliente();
-      cliente1.nome = "João Viana";
-      cliente1.CPF = "0123333555";
+      Cliente cliente2 = new Cliente("Antonio Joao", "Parnaiba", "0123333555");
+      
   
       Conta conta2 = new Conta(1, 81, cliente2);
       System.out.println("Quantidade de contas no Banco Maut: " + Conta.getQuantidadeDeContas());
