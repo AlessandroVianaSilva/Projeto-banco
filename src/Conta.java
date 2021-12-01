@@ -52,7 +52,7 @@ public class Conta {
     public static int getQuantidadeDeContas() {
       return quantidadeDeContas;
     }
-    public double transfer(double valor){
+    public double transfere(double valor){
       if (valor<=this.saldo){
        this.saldo-=valor;
        System.out.println("Transferência realizada!");
