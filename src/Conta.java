@@ -24,12 +24,14 @@ public class Conta {
       
     }
   
-    public void saca(double valor) {
-      if (valor <= this.saldo) {
+    public boolean saca(double valor) {
+      if (valor > 0 && valor <= this.saldo) {
         this.saldo = this.saldo - valor;
         System.out.println("Valor sacado: " + valor);
+        return true;
       } else {
         System.out.println("Saque não realizado, valor acima do saldo atual!");
+        return false;
       }
     }
   
@@ -52,14 +54,9 @@ public class Conta {
     public static int getQuantidadeDeContas() {
       return quantidadeDeContas;
     }
-    public double transfer(double valor){
-      if (valor<=this.saldo){
-       this.saldo-=valor;
-       System.out.println("Transferência realizada!");
-       return valor;
-     }else{
-       System.out.println("Seu saldo é insuficiente para completar a transferencia");
-        return 0.0;
-     }
+    public void transfere(double valor, Conta contaDestino){
+      boolean saqueComSucesso = this.saca(valor);
+      if (saqueComSucesso){
+        contaDestino.deposita(valor);} 
     }
   }
