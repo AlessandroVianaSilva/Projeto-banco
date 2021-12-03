@@ -12,6 +12,7 @@ public class TestaApp {
       Conta conta1 = new Conta(123, 45, cliente1);
        System.out.println(conta1.getAgencia() + " - " + conta1.getNumero() + " - " +
        conta1.getCliente().nome);
+       conta1.deposita(150);
   
       System.out.println("Quantidade de contas no Banco Maut: " + Conta.getQuantidadeDeContas());
   
@@ -26,15 +27,19 @@ public class TestaApp {
   
        System.out.println("Saldo atual da conta1: " + conta1.getSaldo());
   
-       System.out.println(conta1.getAgencia());
+       //System.out.println(conta1.getAgencia());
   
       Cliente cliente2 = new Cliente("Antonio Joao", "Parnaiba", "0123333555");
       
   
-      Conta conta2 = new Conta(1, 81, cliente2);
+      Conta conta2 = new Conta(123, 81, cliente2);
       System.out.println("Quantidade de contas no Banco Maut: " + Conta.getQuantidadeDeContas());
-       System.out.println(conta2.getSaldo());
-       conta2.deposita(10000);
-       System.out.println(conta2.getSaldo());
+      System.out.println(conta2.getSaldo());
+       
+
+       conta1.transfere(50, conta2);
+
+       System.out.println("Saldo conta 1: " + conta1.getSaldo());
+       System.out.println("Saldo conta 2: " + conta2.getSaldo());
     }
   }
