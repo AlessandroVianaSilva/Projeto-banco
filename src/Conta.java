@@ -57,6 +57,18 @@ public class Conta {
     public void transfere(double valor, Conta contaDestino){
       boolean saqueComSucesso = this.saca(valor);
       if (saqueComSucesso){
-        contaDestino.deposita(valor);} 
+        contaDestino.deposita(valor);
+      }
+      } 
+
+    public double transfere(double valor){
+      if (valor<=this.saldo){
+       this.saldo-=valor;
+       System.out.println("Transferência realizada!");
+       return valor;
+     }else{
+       System.out.println("Seu saldo é insuficiente para completar a transferencia");
+        return 0.0;
+     }
     }
   }
