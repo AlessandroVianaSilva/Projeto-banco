@@ -1,0 +1,12 @@
+import java.util.Date;
+
+public class abraConta {
+    private int numeroContido = 0;
+
+    protected Conta abrir(String nome, String cpf, Date dataNascimento, String email, Endereco endereco) {
+        Cliente cliente = new Cliente(nome, cpf, dataNascimento, email, endereco);
+        Conta conta = new Conta(1, numeroContido++, cliente);
+
+        return conta;
+    }
+}
