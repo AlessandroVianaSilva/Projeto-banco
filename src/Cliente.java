@@ -1,53 +1,45 @@
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
-    private String nome;
-    private String cpf;
-    private Date dataNascimento;
-    private Endereco endereco;
-    private String email;
+  private String nome;
+  private String CPF;
+  private List<Endereco> enderecos = new ArrayList<>();
+  private LocalDate dataNascimento;
 
-    public Cliente(String nome, String cpf, Date dataNascimento, String email, Endereco endereco) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.endereco = endereco;
-        this.email = email;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public String getCpf() {
-        return this.cpf;
-    }
-
-    public Date getDataNascimento() {
-        return this.dataNascimento;
-    }
-
-    public Endereco getEndereco() {
-        return this.endereco;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
+  public Cliente(String nome, String CPF, Endereco endereco, LocalDate dataNascimento) {
+    this.nome = nome;
+    this.CPF = CPF;
+    this.enderecos.add(endereco);
+    this.dataNascimento = dataNascimento;
+  }
+  @Override
+  public boolean equals(Object obj) {
+    return this.CPF.equals(((Cliente) obj).CPF);
+  }
+  public String getNome() {
+    return nome;
+  }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+  public String getCPF() {
+    return CPF;
+  }
+  public List<Endereco> getEnderecos() {
+    return enderecos;
+  }
+  public void addEndereco(Endereco endereco) {
+    this.enderecos.add(endereco);
+  }
+  public void removeEndereco(Endereco endereco) {
+    this.enderecos.remove(endereco);
+  }
+  public LocalDate getDataNascimento() {
+    return dataNascimento;
+  }
+  public void setDataNascimento(LocalDate dataNascimento) {
+    this.dataNascimento = dataNascimento;
+  }
 }

@@ -1,70 +1,54 @@
-public class Conta {
-  private int agencia;
-  private int numero;
-  private double saldo;
-  private Cliente cliente;
-  private static int contas = 0;
-  private static Notificacao notifica = new Notificacao();
-
-  public Conta(int agencia, int numero, Cliente cliente) {
+abstract public class Conta {
+    private int agencia;
+    private int numero;
+    private Cliente cliente;
+    protected double saldo;
+    private static int quantidadeDeContas;
+  
+    public Conta(int agencia, int numero, Cliente cliente) {
+      System.out.println("Construindo objeto da classe conta");
+      quantidadeDeContas++;
       this.agencia = agencia;
       this.numero = numero;
-      this.saldo = 0.0;
       this.cliente = cliente;
-      contas++;
-  }
+    }
 
-  public static int getContas() {
-      return contas;
-  }
-
-  public int getAgencia() {
-      return agencia;
-  }
-
-  public int getNumero() {
+    public void deposita(double valor) {
+      if (valor > 0) {
+        this.saldo = this.saldo + valor;
+        this.enviaNotificacao("Depósito", valor);
+        System.out.println("Valor depositado na conta " + this.numero);
+      }
+    }
+  
+    abstract public boolean saca(double valor);
+  
+    public void transfere(double valor, Conta contaDestino) {
+      System.out.println("Iniciando transferência entre contas!");
+      boolean saqueComSucesso = this.saca(valor);
+      if (saqueComSucesso) {
+        contaDestino.deposita(valor);
+        this.enviaNotificacao("Transferência", valor);
+      }
+    }
+  
+    protected void enviaNotificacao(String operacao, double valor) {
+      new Notificacao().enviaEmail(operacao, valor);
+    }
+  
+    public double getSaldo() {
+      return saldo;
+    }
+    public int getAgencia() {
+      return this.agencia;
+    }
+    public int getNumero() {
       return numero;
+    }
+    public Cliente getCliente() {
+      return cliente;
+    }
+    public static int getQuantidadeDeContas() {
+      return quantidadeDeContas;
+    }
   }
-
-  public String getNome() {
-      return cliente.getNome();
-  }
-
-  public double consultaSaldo() {
-      return this.saldo;
-  }
-
-  public boolean deposita(double valor) {
-      if (valor > 0.0) {
-          this.saldo += valor;
-          System.out.println("Deposito de R$ " + valor + " realizado com sucesso!");
-          return true;
-      } else {
-          System.out.println("Valor para deposito não pode ser menor que 0!");
-          return false;
-      }
-  }
-
-  public double sacar(double valor) {
-      if (valor > this.saldo) {
-          System.out.println("Saldo insuficiente!");
-          return 0.0;
-      } else {
-          this.saldo -= valor;
-          System.out.println("Saque de R$ " + valor + " realizado com sucesso!");
-          return valor;
-      }
-  }
-
-  public void transfere(Conta contaDestino, double valor) {
-      if (this.sacar(valor) > 0.0) {
-          contaDestino.deposita(valor);
-          System.out.println("Transferência de R$ " + valor + " realizada com sucesso para "
-                  + contaDestino.getNome());
-      }
-  }
-
-  public void enviaNotificacao(String operacao, double valor) {
-      notifica.enviaEmail(cliente.getEmail(), operacao, valor);
-  }
-}
