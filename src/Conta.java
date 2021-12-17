@@ -23,14 +23,7 @@ abstract public class Conta {
   
     abstract public boolean saca(double valor);
   
-    public void transfere(double valor, Conta contaDestino) {
-      System.out.println("Iniciando transferência entre contas!");
-      boolean saqueComSucesso = this.saca(valor);
-      if (saqueComSucesso) {
-        contaDestino.deposita(valor);
-        this.enviaNotificacao("Transferência", valor);
-      }
-    }
+   abstract public void transfere(double valor, Conta contaDestino);
   
     protected void enviaNotificacao(String operacao, double valor) {
       new Notificacao().enviaEmail(operacao, valor);
@@ -51,4 +44,5 @@ abstract public class Conta {
     public static int getQuantidadeDeContas() {
       return quantidadeDeContas;
     }
+
   }

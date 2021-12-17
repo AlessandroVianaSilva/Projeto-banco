@@ -25,4 +25,13 @@ public class contaPoupanca extends Conta {
             return false;
           }
         }
+    @Override
+    public void transfere(double valor, Conta contaDestino) {
+            System.out.println("Iniciando transferência entre contas!");
+            boolean saqueComSucesso = this.saca(valor);
+            if (saqueComSucesso) {
+              contaDestino.deposita(valor);
+              super.enviaNotificacao("Transferência", valor);
+            }
+          }
 }
