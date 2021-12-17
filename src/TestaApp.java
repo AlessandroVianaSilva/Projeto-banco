@@ -14,13 +14,13 @@ public class TestaApp {
       cc.saca(50);
       cp.saca(50);
 
-      System.out.println("saldo atual da conta cc" + cc.getSaldo());
-      System.out.println("saldo atual da conta cp" + cp.getSaldo());
+      System.out.println("saldo atual da conta cc: " + cc.getSaldo());
+      System.out.println("saldo atual da conta cp: " + cp.getSaldo());
 
       cc.saca(150);
       cp.saca(150);
 
-      System.out.println("saldo atual da conta cc" + cc.getSaldo());
-      System.out.println("saldo atual da conta cp" + cp.getSaldo());
+      System.out.println("saldo atual da conta cc: " + cc.getSaldo());
+      System.out.println("saldo atual da conta cp: " + cp.getSaldo());
 }
 }
